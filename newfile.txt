@@ -1,0 +1,6 @@
+#written by FileProperties
+#Tue Oct 31 00:36:18 KST 2023
+a=에이
+b=비
+c=씨
+width=640
