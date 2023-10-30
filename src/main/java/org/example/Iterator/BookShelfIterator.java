@@ -1,6 +1,7 @@
 package org.example.Iterator;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class BookShelfIterator implements Iterator<Book> {
 
@@ -12,17 +13,23 @@ public class BookShelfIterator implements Iterator<Book> {
         this.index = 0;
     }
 
-
-
-
-
     @Override
     public boolean hasNext() {
-        return false;
+        if (index < bookShelf.getLength()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public Book next() {
-        return null;
+        if(!hasNext()) {
+            throw new NoSuchElementException();
+        }
+        Book book = bookShelf.getBookAt(index);
+        index++;
+
+        return book;
     }
 }
