@@ -1,6 +1,6 @@
 package org.example.TemplateMethod;
 
-public class CharDisplay extends AbstractDisplay{
+public class CharDisplay implements AbstractDisplay{
     private char c;
 
     public CharDisplay(char c) {

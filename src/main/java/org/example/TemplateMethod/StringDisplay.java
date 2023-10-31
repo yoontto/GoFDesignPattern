@@ -1,6 +1,6 @@
 package org.example.TemplateMethod;
 
-public class StringDisplay extends AbstractDisplay {
+public class StringDisplay implements AbstractDisplay {
     private String s;
     private int width;
 
