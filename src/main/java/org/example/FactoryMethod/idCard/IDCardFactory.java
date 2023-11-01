@@ -4,9 +4,11 @@ import org.example.FactoryMethod.framework.Factory;
 import org.example.FactoryMethod.framework.Product;
 
 public class IDCardFactory extends Factory {
+    private int number = 100;
+
     @Override
     public Product createProduct(String owner) {
-        return new IDCard(owner);
+        return new IDCard(owner, number++);
     }
 
     @Override
