@@ -1,16 +1,13 @@
 package org.example;
 
-import org.example.singleton.Singleton;
+import org.example.singleton.TicketMaker;
 
 public class Main {
     public static void main(String[] args) {
-        Singleton s1 = Singleton.getInstance();
-        Singleton s2 = Singleton.getInstance();
+        TicketMaker t1 = TicketMaker.getTicketMaker();
+        TicketMaker t2 = TicketMaker.getTicketMaker();
 
-        if(s1 == s2) {
-            System.out.println("같은 인스턴스");
-        } else {
-            System.out.println("다른 인스턴스");
-        }
+        System.out.println(t1.getNextTicketNumber());
+        System.out.println(t2.getNextTicketNumber());
     }
 }
