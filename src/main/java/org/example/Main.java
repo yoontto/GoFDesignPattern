@@ -1,16 +1,16 @@
 package org.example;
 
-import org.example.TemplateMethod.AbstractDisplay;
-import org.example.TemplateMethod.CharDisplay;
-import org.example.TemplateMethod.StringDisplay;
+import org.example.FactoryMethod.framework.Factory;
+import org.example.FactoryMethod.framework.Product;
+import org.example.FactoryMethod.idCard.IDCardFactory;
 
 public class Main {
     public static void main(String[] args) {
-        AbstractDisplay ad = new CharDisplay('ㅎ');
-        AbstractDisplay as = new StringDisplay("abc");
+        Factory f = new IDCardFactory();
+        Product p1 = f.create("준원");
+        Product p2 = f.create("윤서");
 
-        ad.display();
-        as.display();
-
+        p1.use();
+        p2.use();
     }
 }
