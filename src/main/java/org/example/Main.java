@@ -1,16 +1,16 @@
 package org.example;
 
-import org.example.FactoryMethod.framework.Factory;
-import org.example.FactoryMethod.framework.Product;
-import org.example.FactoryMethod.idCard.IDCardFactory;
+import org.example.singleton.Singleton;
 
 public class Main {
     public static void main(String[] args) {
-        Factory f = new IDCardFactory();
-        Product p1 = f.create("준원");
-        Product p2 = f.create("윤서");
+        Singleton s1 = Singleton.getInstance();
+        Singleton s2 = Singleton.getInstance();
 
-        p1.use();
-        p2.use();
+        if(s1 == s2) {
+            System.out.println("같은 인스턴스");
+        } else {
+            System.out.println("다른 인스턴스");
+        }
     }
 }
