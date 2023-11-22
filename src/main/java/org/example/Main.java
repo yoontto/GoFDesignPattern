@@ -1,21 +1,19 @@
 package org.example;
 
-import org.example.bridge.CountDisplay;
-import org.example.bridge.Display;
-import org.example.bridge.RandomDisplay;
-import org.example.bridge.StringDisplayImpl;
+import org.example.bridge.*;
 
 public class Main {
     public static void main(String[] args) {
-        Display d1 = new Display(new StringDisplayImpl("Hello, Korea!"));
-        Display d2 = new CountDisplay(new StringDisplayImpl("Hello, World!"));
-        CountDisplay d3 = new CountDisplay(new StringDisplayImpl("Hello, Universe."));
-        RandomDisplay d4 = new RandomDisplay(new StringDisplayImpl("TEST!"));
+        //연습문제 1 수정
+        RandomCountDisplay d1 = new RandomCountDisplay(new StringDisplayImpl("테스트!"));
+        //d1.randomDisplay(3);
 
-        d1.display();
-        d2.display();
-        d3.display();
-        d3.multiDisplay(5);
-        d4.randomDisplay(2);
+        //연습문제 2
+        Display d2 = new Display(new FileDisplayImpl("file.txt"));
+        //d2.display();
+
+        //연습문제 3
+        IncreaseDisplay d3 = new IncreaseDisplay(new CharDisplayImpl('#', '-', '^'), 3);
+        d3.increaseDisplay(10);
     }
 }
