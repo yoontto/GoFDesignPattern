@@ -1,13 +1,17 @@
 package org.example;
 
-import org.example.singleton.TicketMaker;
+import org.example.bridge.CountDisplay;
+import org.example.bridge.Display;
+import org.example.bridge.StringDisplayImpl;
 
 public class Main {
     public static void main(String[] args) {
-        TicketMaker t1 = TicketMaker.getTicketMaker();
-        TicketMaker t2 = TicketMaker.getTicketMaker();
-
-        System.out.println(t1.getNextTicketNumber());
-        System.out.println(t2.getNextTicketNumber());
+        Display d1 = new Display(new StringDisplayImpl("Hello, Korea!"));
+        Display d2 = new CountDisplay(new StringDisplayImpl("Hello, World!"));
+        CountDisplay d3 = new CountDisplay(new StringDisplayImpl("Hello, Universe."));
+        d1.display();
+        d2.display();
+        d3.display();
+        d3.multiDisplay(5);
     }
 }
