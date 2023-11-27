@@ -1,52 +1,46 @@
 package org.example;
 
-import org.example.abstractFactory.factory.Factory;
-import org.example.abstractFactory.factory.Link;
-import org.example.abstractFactory.factory.Page;
-import org.example.abstractFactory.factory.Tray;
+import org.example.strategy.Hand;
+import org.example.strategy.Player;
+import org.example.strategy.ProbStrategy;
+import org.example.strategy.WinningStrategy;
 
 public class Main {
     public static void main(String[] args) {
         if(args.length != 2) {
-            System.out.println("Usage : java Main filename.html class.name.of.Concrete Factory");
-            System.out.println("Example 1 : java Main list.html listFactory.ListFactory");
-            System.out.println("Example 2 : java Main div.html divFactory.DivFactory");
+            System.out.println("Usage : java Main randomseed1 randomseed2");
+            System.out.println("Example : java Main 314 15");
             System.exit(0);
         }
 
-        String filename = args[0];
-        String classname = args[1];
+        int seed1 = Integer.parseInt(args[0]);
+        int seed2 = Integer.parseInt(args[1]);
 
-        Factory factory = Factory.getFactory(classname);
+        Player player1 = new Player("KIM" , new WinningStrategy(seed1));
+        Player player2 = new Player("LEE" , new ProbStrategy(seed2));
 
-        //Blog
-        Link blog1 = factory.createLink("Blog 1", "https://example.com/blog1");
-        Link blog2 = factory.createLink("Blog 2", "https://example.com/blog2");
-        Link blog3 = factory.createLink("Blog 3", "https://example.com/blog3");
+        for(int i = 0; i < 10000; i++) {
+            Hand nextHand1 = player1.nextHand();
+            Hand nextHand2 = player2.nextHand();
 
-        Tray blogTray = factory.createTray("Blog site");
-        blogTray.add(blog1);
-        blogTray.add(blog2);
-        blogTray.add(blog3);
+            if(nextHand1.isStrongerThan(nextHand2)) {
+                System.out.println("Winner : " + player1);
+                player1.win();
+                player2.lose();
+            } else if (nextHand2.isStrongerThan(nextHand1)) {
+                System.out.println("Winner : " + player2);
+                player1.lose();
+                player2.win();
+            } else {
+                System.out.println("Even..");
+                player1.even();
+                player2.even();
+            }
+        }
 
-        //News
-        Link news1 = factory.createLink("News 1", "https://example.com/news1");
-        Link news2 = factory.createLink("News 2", "https://example.com/news2");
-        Tray news3 = factory.createTray("News 3");
-        news3.add(factory.createLink("News 3(US)", "https://example.com/news3us"));
-        news3.add(factory.createLink("News 3(Korea)", "https://example.com/news3kr"));
-
-        Tray newsTray = factory.createTray("News Site");
-        newsTray.add(news1);
-        newsTray.add(news2);
-        newsTray.add(news3);
-
-        //Page
-        Page page  = factory.createPage("Blog and News", "yoons.com");
-        page.add(blogTray);
-        page.add(newsTray);
-
-        page.output(filename);
+        System.out.println("Total Result : ");
+        System.out.println(player1);
+        System.out.println(player2);
 
     }
 }
